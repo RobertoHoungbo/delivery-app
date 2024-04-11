@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
+import Navbar from "./components/navbar";
+import Footer from "./components/footer";
+import Provider from "@/redux/provider";
+import Setup from "./components/utils/setup";
 
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +18,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className="justify-between">
+        <Provider>
+          <Setup />
+          <Navbar />
+          <div className=" justify-center items-center p-24">{children}</div>
+          <Footer />
+        </Provider>
+        
+      </body>
     </html>
   );
 }
