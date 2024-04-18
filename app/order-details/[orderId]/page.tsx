@@ -41,23 +41,6 @@ function OrderDetails({ params }: pageProps) {
     router.replace(`/update-order/${orderID}`)
   }
 
-  const onClickDelete = (event: MouseEvent<HTMLButtonElement>, orderID: number) => {
-    event.preventDefault();
-
-    deleteOrder(orderID)
-        .unwrap()
-
-        .then(() => {
-          toast.success('Successfully delete order !');
-          router.push('/dashboard');
-          router.refresh();
-        })
-
-        .catch(() => {
-          toast.error('Failed to delete order !')
-        })
-
-  }
   
   if (isLoading) {
     return <div className="flex justify-center my-8">
@@ -79,7 +62,7 @@ function OrderDetails({ params }: pageProps) {
           <p className='text-2xl'>Updated date: {formattedupdateDate}</p>
       </div>
 
-      <div className='flex justify-start'>
+      {/* <div className='flex justify-start'>
           <div className='mt-5 mr-6'>
               <button  key={params.orderId} onClick={(event) => onClick(event, params.orderId)} className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                     Update order
@@ -91,7 +74,7 @@ function OrderDetails({ params }: pageProps) {
                     Delete order
               </button>
           </div>
-      </div>
+      </div> */}
 
       
       

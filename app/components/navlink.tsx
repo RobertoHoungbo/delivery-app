@@ -20,10 +20,10 @@ function Navlink({
     
     const className = cn (
         rest.className,
-        'text-white round-md px-3 py-2 font-medium flex justify-between',
+        'round-md px-3 py-2 font-medium flex justify-between',
         {
-            'bg-gray-900 round-md': isSelected,
-            'text-gray-300 hover:bg-gray-700 hover:text-white': !isSelected && !isBanner,
+            'text-black bg-white  round-md': isSelected,
+            'text-gray-300 hover:bg-white hover:text-black': !isSelected && !isBanner,
             'block text-base': !isMobile,
             'text-sm': !isMobile,
             'text-gray-300': isBanner,

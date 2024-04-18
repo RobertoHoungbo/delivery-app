@@ -46,7 +46,7 @@ export default function Navbar() {
       </Navlink>
 
       <Navlink
-        isSelected={pathname === 'profile/' ? true : false }
+        isSelected={pathname === '/profile' ? true : false }
         isMobile={isMobile}
         href='/profile'
         className='mr-3 round-md'
@@ -65,6 +65,17 @@ export default function Navbar() {
 
   const guestLinks = (isMobile: boolean) => (
     <>
+
+      <Navlink
+              isSelected={pathname === '/' ? true : false }
+              isMobile={isMobile}
+              href='/'
+              className='mr-3 round-md'
+            >
+                Home
+        </Navlink>
+
+
       <Navlink
         isSelected={pathname === '/auth/login' ? true : false }
         isMobile={isMobile}
@@ -105,9 +116,6 @@ export default function Navbar() {
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center">
-                    <Navlink href="/" isBanner>
-                      Home
-                    </Navlink>
                     <div className="hidden sm:mr-4 sm:block justify-end">
                       <div className="flex justify-end ">
                         {isAuthenticated 

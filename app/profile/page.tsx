@@ -10,7 +10,9 @@ function UserProfile() {
   
   const {data: user, isLoading, isError} = useRetrieveUserQuery();
 
-  const image = `http://localhost:8000${user?.profile_pic}`
+  const image = user?.profile_pic 
+  ? `http://localhost:8000${user.profile_pic}`
+  : '/profile.png';
  
 
     if (isLoading) {
