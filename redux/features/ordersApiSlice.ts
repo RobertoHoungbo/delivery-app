@@ -1,8 +1,12 @@
 import { apiSlice } from "../services/apiSlice";
 
 interface Order{
+    id: number;
     size: string;
     quantity: number;
+    order_status: string;
+    created_at: string;
+    updated_at: string;
 }
 
 
@@ -22,34 +26,32 @@ const ordersApiSlice = apiSlice.injectEndpoints ({
                 
             }) 
         }),
-        // register: builder.mutation({
-        //     query: ({
-        //         username, email, phone_number, password 
-        //     }) => ({
-        //         url: 'auth/signup/',
-        //         method: 'POST',
-        //         body: { username, email, phone_number, password },
-        //     }),
-        // }),
-        // verify: builder.mutation({
-        //     query: () => ({
-        //         url: 'auth/api/token/verify/',
-        //         method: 'POST',
-        //     }),
-        // }),
-        // logout: builder.mutation({
-        //     query: () => ({
-        //         url: 'auth/logout/',
-        //         method: 'POST',
-        //     }),
-        // }),
+        orderDetails: builder.query<Order, number>({
+            query: (order_id) => `/orders/users/@me/order/${order_id}/`
+        }),
+        updateOrder: builder.mutation({
+            query: ({ order_id, size, quantity, created_at, updated_at }) => ({
+                url: `orders/${order_id}/`,
+                method: 'PUT',
+                body: { size, quantity, created_at, updated_at },
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            }),
+        }),
+        deleteOrder: builder.mutation({
+            query: (order_id) => ({
+                url: `orders/${order_id}/`,
+                method: 'DELETE',
+            }),
+        }),
     }),
 });
 
 export const { 
     useRetrieveUserOrdersQuery,
     useCreateOrderMutation,
-    // useRegisterMutation,
-    // useVerifyMutation,
-    // useLogoutMutation,
+    useOrderDetailsQuery,
+    useUpdateOrderMutation,
+    useDeleteOrderMutation,
 } = ordersApiSlice;

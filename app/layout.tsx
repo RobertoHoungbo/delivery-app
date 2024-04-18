@@ -4,6 +4,7 @@ import Navbar from "./components/navbar";
 import Footer from "./components/footer";
 import Provider from "@/redux/provider";
 import Setup from "./components/utils/setup";
+import React from 'react';
 
 
 export const metadata: Metadata = {

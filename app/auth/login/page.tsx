@@ -35,7 +35,7 @@ function Login() {
     const onSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        login({ email, password})
+        login({ email, password })
             .unwrap()
 
             .then(() => {

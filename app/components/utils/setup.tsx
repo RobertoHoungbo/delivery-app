@@ -15,7 +15,7 @@ function Setup() {
     verify(undefined)
       .unwrap()
       .then(() => {
-          dispatch(setAuth());
+          dispatch(setAuth())
       })
       .finally(() => {
         dispatch(finishInitialLoad());

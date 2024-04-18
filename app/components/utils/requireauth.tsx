@@ -11,15 +11,17 @@ interface Props {
 }
 
 function Requireauth({children}: Props) {
+    
     const router = useRouter();
     const {isLoading, isAuthenticated} = useAppSelector(state => state.auth)
 
-    useEffect(() => {
-        if (!isAuthenticated) {
-            router.push("auth/login");
-        }
-    }, [isAuthenticated, router]);
 
+    useEffect(() => {
+        if (!isLoading && !isAuthenticated) {
+            router.push("/auth/login");
+        }
+    }, [isLoading, isAuthenticated, router]);
+    
     if(isLoading) {
         return (
             <div className="flex justify-center my-8">

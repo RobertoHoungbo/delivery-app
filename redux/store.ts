@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import authReducer from "./features/authSlice";
 import { apiSlice } from "./services/apiSlice";
+import orderReducer from "./features/orderSlice";
 
 
  export const makeStore = () => 
@@ -8,6 +9,7 @@ import { apiSlice } from "./services/apiSlice";
         reducer: {
             [apiSlice.reducerPath]: apiSlice.reducer,
             auth: authReducer,
+            order: orderReducer,
         },
         middleware: getDefaultMiddleware => getDefaultMiddleware().concat(apiSlice.middleware),
         devTools: process.env.NODE_ENV !== 'production'

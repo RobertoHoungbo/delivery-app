@@ -8,6 +8,7 @@ import Link from "next/link";
 
 
 function Dashboard() {
+  
   const {data: user, isLoading, isError} = useRetrieveUserQuery();
 
   if (isLoading) {

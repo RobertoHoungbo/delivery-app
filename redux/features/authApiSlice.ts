@@ -3,6 +3,8 @@ import { apiSlice } from "../services/apiSlice";
 interface User{
     username: string;
     email: string;
+    phone_number: string;
+    profile_pic: string;
 }
 
 

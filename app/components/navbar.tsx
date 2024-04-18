@@ -40,12 +40,24 @@ export default function Navbar() {
         isSelected={pathname === '/dashboard' ? true : false }
         isMobile={isMobile}
         href='/dashboard'
+        className='mr-3 round-md'
       >
           Dashboard
       </Navlink>
 
       <Navlink
-        isMobile={isMobile} onClick={handleLogout}>
+        isSelected={pathname === 'profile/' ? true : false }
+        isMobile={isMobile}
+        href='/profile'
+        className='mr-3 round-md'
+      >
+          Profile
+      </Navlink>
+
+      <Navlink
+        className='justify-end'
+        isMobile={isMobile} 
+        onClick={handleLogout}>
           Logout
       </Navlink>
     </>
@@ -57,6 +69,7 @@ export default function Navbar() {
         isSelected={pathname === '/auth/login' ? true : false }
         isMobile={isMobile}
         href='/auth/login'
+        className='mr-3 round-md'
       >
           Login
       </Navlink>
@@ -65,6 +78,7 @@ export default function Navbar() {
         isSelected={pathname === '/auth/register' ? true : false }
         isMobile={isMobile}
         href='/auth/register'
+        className='justify-end'
       >
           Register
       </Navlink>
@@ -72,14 +86,14 @@ export default function Navbar() {
   );
 
   return (
-    <Disclosure as="nav" className="bg-indigo-800">
+    <Disclosure as="nav" className="bg-indigo-800 flex justify-end">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 max-h-40">
-            <div className="relative flex h-16 items-center justify-between">
+            <div className=" flex h-16 items-center justify-between">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 
-                <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                <Disclosure.Button className="relative inline-flex items-center justify-end rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                   <span className="absolute -inset-0.5" />
                   <span className="sr-only">Open main menu</span>
                   {open ? (
@@ -94,19 +108,20 @@ export default function Navbar() {
                     <Navlink href="/" isBanner>
                       Home
                     </Navlink>
+                    <div className="hidden sm:mr-4 sm:block justify-end">
+                      <div className="flex justify-end ">
+                        {isAuthenticated 
+                        ? authLinks(false) 
+                        : guestLinks(false)}
+                      </div>
+                    </div>
                 </div>
-                <div className="hidden sm:ml-6 sm:block">
-                  <div className="flex space-x-4">
-                     {isAuthenticated 
-                     ? authLinks(false) 
-                     : guestLinks(false)}
-                  </div>
-                </div>
+                
               </div>
             </div>
           </div>
 
-          <Disclosure.Panel className="sm:hidden">
+          <Disclosure.Panel className="sm:hidden justify-end">
             <div className="space-y-1 px-2 pb-3 pt-2">
               {isAuthenticated 
                   ? authLinks(true) 
