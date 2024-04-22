@@ -12,6 +12,8 @@ import { EllipsisHorizontalIcon } from "@heroicons/react/24/outline";
 import classNames from "classnames";
 import { toast } from "react-toastify";
 import { useDeleteOrderMutation } from "@/redux/features/ordersApiSlice";
+import Link from "next/link";
+
 
 interface Order {
   id: number;
@@ -56,7 +58,7 @@ function UserOrders() {
 
   const onClick = (event: MouseEvent<HTMLButtonElement>, orderID: number) => {
     event.preventDefault();
-    router.push(`order-details/${orderID}`);
+    router.push(`dashboard/order-details/${orderID}`);
   };
 
   const onClickUpdate = (event: MouseEvent<HTMLButtonElement>, orderID: number) => {
@@ -116,7 +118,7 @@ function UserOrders() {
         {commands.map((order) => (
           <div
             key={order.id}
-            className="flex flex-col mr-3 border rounded-box min-w-2xl"
+            className="flex flex-col mr-3 border rounded-box min-w-2xl mb-4"
           >
             <div className="flex justify-start p-2">
               <Image
@@ -157,15 +159,15 @@ function UserOrders() {
                     <div className="py-1">
                       <Menu.Item>
                         {({ active }) => (
-                          <button
-                            onClick={(event) => onClickUpdate(event, order.id)}
+                          <Link
+                            href={`dashboard/update-order/${order?.id}`}
                             className={classNames(
                               active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                               'px-4 py-2 text-sm w-full flex justify-start'
                             )}
                           >
                             Update order
-                          </button>
+                          </Link>
                         )}
                       </Menu.Item>
                       <Menu.Item>

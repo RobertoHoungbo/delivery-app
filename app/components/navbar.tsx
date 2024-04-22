@@ -7,11 +7,13 @@ import { Disclosure } from '@headlessui/react';
 import { useAppSelector, useAppDispatch } from "@/redux/hooks";
 import { logout as setLogout } from "@/redux/features/authSlice";
 import { useLogoutMutation } from "@/redux/features/authApiSlice";
-import { useRouter, usePathname } from "next/navigation";
+import { useRouter, usePathname, redirect } from "next/navigation";
 import Navlink from "./navlink";
+import { unstable_noStore as noStore } from 'next/cache';
 
 
 export default function Navbar() {
+  noStore();
 
   const router = useRouter();
 
@@ -28,9 +30,9 @@ export default function Navbar() {
       .unwrap()
 
       .then(() => {
-        dispatch(setLogout());
-        router.push('/');
         window.location.reload();
+        dispatch(setLogout());
+        router.push("/");
       });
   }
 
